@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        ruby-version: ['3.3', '3.4', 'head']
+        ruby-version: ['3.3', '3.4', '4.0', 'head']
 
     steps:
     - uses: actions/checkout@v5
@@ -18,4 +18,4 @@ jobs:
       with:
         ruby-version: ${{ matrix.ruby-version }}
 
-    - run: ruby test_dentaku.rb
+    - run: rake test
