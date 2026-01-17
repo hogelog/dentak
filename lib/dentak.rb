@@ -1,10 +1,9 @@
-#!/usr/bin/env ruby
-
 require "bigdecimal"
 require "reline"
 require "fileutils"
 require "prism"
 require "irb/color"
+require "dentak/version"
 
 class Dentaku
   HISITORY_FILE = File.expand_path("~/.config/dentaku/history")
@@ -24,13 +23,13 @@ class Dentaku
 
     @prev_result = 0
   end
- 
+
   def run
     begin
       loop do
         line = Reline.readline("dentaku> ", true)
         break if line.nil?
-  
+
         begin
           result = calc(line)
           puts "=> #{colorize_result(result)}"
@@ -117,7 +116,7 @@ class Dentaku
   end
 
   def normalize_number(line)
-    line.gsub(/[$¥]?([\d,]+)(\.\d+)?/, '\1\2').gsub(",", "")
+    line.gsub(/[$¥]?([\d,]+)(\.\d+)?/, '\\1\\2').gsub(",", "")
   end
 
   def copy(val)
@@ -128,9 +127,9 @@ class Dentaku
     case val
     when BigDecimal
       if val.frac.zero?
-        val.to_i.to_s.gsub(/(\d)(?=(\d{3})+$)/, '\1,')
+        val.to_i.to_s.gsub(/(\d)(?=(\d{3})+$)/, '\\1,')
       else
-        val.round(2).to_s("F").gsub(/(\d)(?=(\d{3})+\.)/, '\1,')
+        val.round(2).to_s("F").gsub(/(\d)(?=(\d{3})+\.)/, '\\1,')
       end
     else
       val.to_s
@@ -167,8 +166,4 @@ class Dentaku
       IRB::Color.colorize(result, [:BOLD, :BLUE])
     end
   end
-end
-
-if __FILE__ == $0
-  Dentaku.run
 end

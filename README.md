@@ -1,10 +1,11 @@
-# dentaku
-Simple calculator program.
+# dentak
+Simple calculator program (CLI command: `dentak`).
 
 Requires Ruby 3.3+
 
 ```bash
-ruby dentaku.rb
+gem install dentak
+dentak
 ```
 
 ```

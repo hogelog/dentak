@@ -1,7 +1,9 @@
 #!/usr/bin/env ruby
 
 require "minitest/autorun"
-require_relative "dentaku"
+
+$LOAD_PATH.unshift(File.expand_path("../lib", __dir__))
+require "dentak"
 
 class TestDentaku < Minitest::Test
   def setup
