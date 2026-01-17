@@ -131,7 +131,7 @@ class TestDentaku < Minitest::Test
 
   def test_prev_result
     assert_equal "100", @dentaku.calc("10*10")
-    result = @dentaku.calc("10*10")
+    _result = @dentaku.calc("10*10")
     assert_equal "1000", @dentaku.calc("_*10")
   end
 
